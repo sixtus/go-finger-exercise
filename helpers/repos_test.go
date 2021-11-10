@@ -5,9 +5,9 @@ import (
 )
 
 func Test_Repos_Lookup(t *testing.T) {
-	actorsFileName := "../test-data/repos.csv"
+	reposFileName := "../test-data/repos.csv"
 
-	a := LoadLookup(actorsFileName)
+	a := LoadLookup(reposFileName)
 
 	expectedLength := 12607 // this is specific to the test data
 
