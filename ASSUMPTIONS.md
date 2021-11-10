@@ -58,3 +58,6 @@
    - This problem is more complex than it first appears. Defend with tests and
      revisit our assumptions frequently to make sure we don't have any logic
      error.
+
+## Notes implementing an actors helper
+   - The file is not unique, reading into a map will make the last name win. Assuming that's ok.
