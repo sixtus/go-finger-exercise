@@ -24,14 +24,15 @@
 
 ### Top 10 active users sorted by amount of PRs created and commits pushed
 
-   1. read all commits to build a map `event_id -> commit count` 2. read all
-   events to build a map `actor_id -> PullRequestEvent` and and `actor_id ->
-   PushEvent`(thought: either build array of push events and compute the
-   `actor_id -> commit` count in a 2nd step or pass the map from 1. as
-   parameter and build the map `actor_id -> commit count` directly) 3. find the
-   top 10 of both actor_id maps(thought: that's a worst case access to a map,
-   check if there is a better data structure) 4. lookup the name of the top 10
-   actors in actors 5. output
+   1. read all commits to build a map `event_id -> commit count`
+   2. read all events to build a map `actor_id -> PullRequestEvent` and and
+   `actor_id -> PushEvent`(thought: either build array of push events and compute
+   the `actor_id -> commit` count in a 2nd step or pass the map from 1. as
+   parameter and build the map `actor_id -> commit count` directly)
+   3. find the top 10 of both actor_id maps(thought: that's a worst case access to a map,
+   check if there is a better data structure)
+   4. lookup the name of the top 10 actors in actors
+   5. output
 
 ### Top 10 repositories sorted by amount of commits pushed
    1. read all events to build a map `repo_id -> commit count`
