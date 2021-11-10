@@ -6,7 +6,7 @@ import (
 )
 
 type TopNEntry struct {
-	Name    string
+	Id      string
 	Counter int
 }
 type TopNEntries []TopNEntry
@@ -29,18 +29,18 @@ func (t *TopN) Clear() {
 	t.entries = make(TopNEntries, 100) // TODO: meaningful initial size
 }
 
-func (t *TopN) Add(key string, weight int) {
+func (t *TopN) Add(id string, weight int) {
 	// probably overkill but debugging it later is hard...
 	t.accessLock.Lock()
 	defer t.accessLock.Unlock()
 
-	pos, keyExists := t.index[key]
-	if !keyExists {
+	pos, idExists := t.index[id]
+	if !idExists {
 		entry := TopNEntry{
-			Name:    key,
+			Id:      id,
 			Counter: weight,
 		}
-		t.index[key] = len(t.entries)
+		t.index[id] = len(t.entries)
 		t.entries = append(t.entries, entry)
 	} else {
 		t.entries[pos].Counter = t.entries[pos].Counter + weight

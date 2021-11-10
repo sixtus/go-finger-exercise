@@ -7,18 +7,18 @@ import (
 func Test_Repos_Lookup(t *testing.T) {
 	reposFileName := "../test-data/repos.csv"
 
-	a := LoadLookup(reposFileName)
+	a := LoadLookup(&reposFileName)
 
 	expectedLength := 12607 // this is specific to the test data
 
-	testKey := "224252202" // again specific to test data
+	testId := "224252202" // again specific to test data
 	testExpected := "DSC-RPI/dsc-portal"
 
 	if a.Length() != expectedLength {
 		t.Fatalf("There are %d elements, but expected %d", a.Length(), expectedLength)
 	}
 
-	if a.GetName(testKey) != testExpected {
-		t.Fatalf("Looking up %s, expected %s, got %s", testKey, testExpected, a.GetName(testKey))
+	if a.GetNameById(testId) != testExpected {
+		t.Fatalf("Looking up %s, expected %s, got %s", testId, testExpected, a.GetNameById(testId))
 	}
 }
