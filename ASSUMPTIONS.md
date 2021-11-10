@@ -19,3 +19,41 @@
    - Optimizing for readibility suggests using explicit structs for the data and
      wrap the native encoding/csv (at the expense of CPU/RAM, see above for
      reasoning)
+
+## Analyzing the requirements
+
+### Top 10 active users sorted by amount of PRs created and commits pushed
+
+   1. read all commits to build a map `event_id -> commit count` 2. read all
+   events to build a map `actor_id -> PullRequestEvent` and and `actor_id ->
+   PushEvent`(thought: either build array of push events and compute the
+   `actor_id -> commit` count in a 2nd step or pass the map from 1. as
+   parameter and build the map `actor_id -> commit count` directly) 3. find the
+   top 10 of both actor_id maps(thought: that's a worst case access to a map,
+   check if there is a better data structure) 4. lookup the name of the top 10
+   actors in actors 5. output
+
+### Top 10 repositories sorted by amount of commits pushed
+   1. read all events to build a map `repo_id -> commit count`
+      (that's basically the same as the first top 10, just on repo_id instead of actor_id)
+
+### Top 10 repositories sorted by amount of watch events
+   1. read all events to build a map `repo_id -> watch count`
+
+### Conclusions from first analysis
+   - There is a high overlap between the individual tasks. Also the requirements
+     read as if all parts are executed all the time
+   - actors and repos are classical lookups, it's probably easiest to just read
+     them into a map (assumping they stay small even if we scale out)
+   - commits are only relevant to find the commit count per event, that's a map
+     too (this will grow faster on scale, but not unreasonably)
+   - reading/building the information from events look like a map, however we
+     then want a top10 of the values.
+   - initial thought: it probably makes sense to keep the values in a slice
+     (so the map value is just the slice offset). This will allow to use a
+     quickselect w/o extra conversion step from map values to value slice.
+     Let's see if we find a beter approach in-flight, but this seems like a
+     fairly good trade off between code complexity and runtime efficiency.
+   - This problem is more complex than it first appears. Defend with tests and
+     revisit our assumptions frequently to make sure we don't have any logic
+     error.
