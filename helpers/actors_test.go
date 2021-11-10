@@ -4,10 +4,10 @@ import (
 	"testing"
 )
 
-func Test_Actor(t *testing.T) {
+func Test_Actor_Lookup(t *testing.T) {
 	actorsFileName := "../test-data/actors.csv"
 
-	a := LoadActors(actorsFileName)
+	a := LoadLookup(actorsFileName)
 
 	expectedLength := 9728 // this is specific to the test data
 
@@ -18,7 +18,7 @@ func Test_Actor(t *testing.T) {
 		t.Fatalf("There are %d elements, but expected %d", a.Length(), expectedLength)
 	}
 
-	if a.Lookup(testKey) != testExpected {
-		t.Fatalf("Looking up %s, expected %s, got %s", testKey, testExpected, a.Lookup(testKey))
+	if a.GetName(testKey) != testExpected {
+		t.Fatalf("Looking up %s, expected %s, got %s", testKey, testExpected, a.GetName(testKey))
 	}
 }
