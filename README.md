@@ -10,7 +10,7 @@ Goal is a CLI application that outputs:
 
 # Testing the solution
 
-``` go test ./...` ```
+``` go test ./... ```
 
 # Running the solution
 ```
