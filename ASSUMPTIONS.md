@@ -18,7 +18,7 @@
    - Golang 1.17, no external processing tools
    - Optimizing for readibility suggests using explicit structs for the data and
      wrap the native encoding/csv (at the expense of CPU/RAM, see above for
-     reasoning)
+     reasoning) (Note: didn't seem necessary actually coding, leaving comment for completeness)
 
 ## Analyzing the requirements
 
@@ -65,8 +65,12 @@
 
 ## Notes on first code complete
    - As expected, this made a lot more sense in flight
-   - Putting everthing together was so easy, I actually wrote main before the test for events_scanner (pending ofc)
+   - Putting everything together was so easy, I actually wrote main before the test for events_scanner (pending ofc)
    - The code is fairly straight forward, now that I have a first working solution, it makes sense
      to revisit variable names. Also top_n.go deserves documentation
    - I was thinking about threading the intake, but my little laptop runs it in 0m0,038s
    - Early optimization is the root of all evil, so keeping it single thread
+
+## Final todo:
+   - document top_n.go
+   - write evnets_scanner_test.go
