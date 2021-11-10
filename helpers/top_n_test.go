@@ -22,11 +22,11 @@ func Test_TopN(t *testing.T) {
 	}
 
 	if testResponse[0].Name != "C" || testResponse[0].Counter != 11 {
-		t.Fatalf("Top element doesn't match, expected C 11, got %s %d", testResponse[0].Name, testResponse[0].Counter)
+		t.Fatalf("1st element doesn't match, expected C 11, got %s %d", testResponse[0].Name, testResponse[0].Counter)
 	}
 
 	if testResponse[1].Name != "A" || testResponse[1].Counter != 6 {
-		t.Fatalf("Top element doesn't match, expected A 6, got %s %d", testResponse[1].Name, testResponse[1].Counter)
+		t.Fatalf("2nd element doesn't match, expected A 6, got %s %d", testResponse[1].Name, testResponse[1].Counter)
 	}
 
 	testResponse = top.GetTopNAndClear(expectedLength)
