@@ -11,11 +11,11 @@ type CommitSizer struct {
 	entries map[string]int
 }
 
-func LoadCommitSizer(filename string) *CommitSizer {
+func LoadCommitSizer(filename *string) *CommitSizer {
 	var l CommitSizer
 	l.entries = make(map[string]int)
 
-	f, err := os.Open(filename)
+	f, err := os.Open(*filename)
 	if err != nil {
 		log.Fatal(err)
 	}

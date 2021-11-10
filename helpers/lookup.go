@@ -11,11 +11,11 @@ type Lookup struct {
 	entries map[string]string
 }
 
-func LoadLookup(filename string) *Lookup {
+func LoadLookup(filename *string) *Lookup {
 	var l Lookup
 	l.entries = make(map[string]string)
 
-	f, err := os.Open(filename)
+	f, err := os.Open(*filename)
 	if err != nil {
 		log.Fatal(err)
 	}

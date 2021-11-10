@@ -62,3 +62,11 @@
 ## Notes implementing an actors helper
    - The file is not unique, reading into a map will make the last name win. Assuming that's ok.
    - The repos helper will be exactly the same, so refactoring the code to be generic
+
+## Notes on first code complete
+   - As expected, this made a lot more sense in flight
+   - Putting everthing together was so easy, I actually wrote main before the test for events_scanner (pending ofc)
+   - The code is fairly straight forward, now that I have a first working solution, it makes sense
+     to revisit variable names. Also top_n.go deserves documentation
+   - I was thinking about threading the intake, but my little laptop runs it in 0m0,038s
+   - Early optimization is the root of all evil, so keeping it single thread
