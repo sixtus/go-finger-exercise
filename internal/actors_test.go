@@ -1,18 +1,18 @@
-package helpers
+package internal
 
 import (
 	"testing"
 )
 
-func Test_Repos_Lookup(t *testing.T) {
-	reposFileName := "../test-data/repos.csv"
+func Test_Actor_Lookup(t *testing.T) {
+	actorsFileName := "../test-data/actors.csv"
 
-	a := LoadLookup(reposFileName)
+	a := LoadLookup(actorsFileName)
 
-	expectedLength := 12607 // this is specific to the test data
+	expectedLength := 9728 // this is specific to the test data
 
-	testId := "224252202" // again specific to test data
-	testExpected := "DSC-RPI/dsc-portal"
+	testId := "8422699" // again specific to test data
+	testExpected := "Apexal"
 
 	if a.Length() != expectedLength {
 		t.Fatalf("There are %d elements, but expected %d", a.Length(), expectedLength)

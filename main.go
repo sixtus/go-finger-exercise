@@ -3,14 +3,14 @@ package main
 import (
 	"flag"
 	"fmt"
-	"github.com/sixtus/go-finger-exercise/helpers"
+	"github.com/sixtus/go-finger-exercise/internal"
 )
 
 const (
 	N = 10
 )
 
-func output(label string, topN helpers.TopNEntries, lookup *helpers.Lookup) {
+func output(label string, topN internal.TopNEntries, lookup *internal.Lookup) {
 	fmt.Println(label)
 	for n, e := range topN {
 		fmt.Printf("%d: %s -> %d\n", n+1, lookup.GetNameById(e.Id), e.Counter)
@@ -26,10 +26,10 @@ func main() {
 
 	flag.Parse()
 
-	actors := helpers.LoadLookup(*actorsFileName)
-	commits := helpers.LoadCommitSizer(*commitsFileName)
-	events := helpers.LoadEventsScanner(*eventsFileName, commits)
-	repos := helpers.LoadLookup(*reposFileName)
+	actors := internal.LoadLookup(*actorsFileName)
+	commits := internal.LoadCommitSizer(*commitsFileName)
+	events := internal.LoadEventsScanner(*eventsFileName, commits)
+	repos := internal.LoadLookup(*reposFileName)
 
 	output("user by commits", events.TopUserCommits.GetTopNAndClear(N), actors)
 	output("user by PRs", events.TopUserPR.GetTopNAndClear(N), actors)
