@@ -60,17 +60,25 @@
      error.
 
 ## Notes implementing an actors helper
-   - The file is not unique, reading into a map will make the last name win. Assuming that's ok.
-   - The repos helper will be exactly the same, so refactoring the code to be generic
+   - The file is not unique, reading into a map will make the last name win.
+     Assuming that's ok.
+   - The repos helper will be exactly the same, so refactoring the code to be
+     generic
 
 ## Notes on first code complete
    - As expected, this made a lot more sense in flight
-   - Putting everything together was so easy, I actually wrote main before the test for events_scanner (pending ofc)
-   - The code is fairly straight forward, now that I have a first working solution, it makes sense
-     to revisit variable names. Also top_n.go deserves documentation
-   - I was thinking about threading the intake, but my little laptop runs it in 0m0,038s
+   - Putting everything together was so easy, I actually wrote main before the
+     test for events_scanner (pending ofc)
+   - The code is fairly straight forward, now that I have a first working
+     solution, it makes sense to revisit variable names. Also top_n.go deserves
+     documentation
+   - I was thinking about threading the intake, but my little laptop runs it in
+     0m0,038s
    - Early optimization is the root of all evil, so keeping it single thread
 
-## Final todo:
-   - document top_n.go
-   - write evnets_scanner_test.go
+## Notes on completion
+   - Removing the mutex from topN almost halfed the runtime, it's not needed atm
+   - The design philosophy of this app is "fail early and keep it simple"
+   - The internal constructors all take a file name.
+     This is "keeping it simple", but likely the first thing to change, when
+     requirements change.
