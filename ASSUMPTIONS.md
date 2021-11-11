@@ -53,7 +53,7 @@
    - initial thought: it probably makes sense to keep the values in a slice
      (so the map value is just the slice offset). This will allow to use a
      quickselect w/o extra conversion step from map values to value slice.
-     Let's see if we find a beter approach in-flight, but this seems like a
+     Let's see if we find a better approach in-flight, but this seems like a
      fairly good trade off between code complexity and runtime efficiency.
    - This problem is more complex than it first appears. Defend with tests and
      revisit our assumptions frequently to make sure we don't have any logic
@@ -74,7 +74,7 @@
      documentation
    - I was thinking about threading the intake, but my little laptop runs it in
      0m0,038s
-   - Early optimization is the root of all evil, so keeping it single thread
+   - Early optimization is the root of all evil, so keeping it single threaded
 
 ## Notes on completion
    - Removing the mutex from topN almost halfed the runtime, it's not needed atm
