@@ -7,7 +7,7 @@ import (
 func Test_Commit_Sizer(t *testing.T) {
 	commitsFileName := "../test-data/commits.csv"
 
-	c := LoadCommitSizer(&commitsFileName)
+	c := LoadCommitSizer(commitsFileName)
 
 	expectedLength := 16520 // this is specific to the test data
 

@@ -26,10 +26,10 @@ func main() {
 
 	flag.Parse()
 
-	actors := helpers.LoadLookup(actorsFileName)
-	commits := helpers.LoadCommitSizer(commitsFileName)
-	events := helpers.LoadEventsScanner(eventsFileName, commits)
-	repos := helpers.LoadLookup(reposFileName)
+	actors := helpers.LoadLookup(*actorsFileName)
+	commits := helpers.LoadCommitSizer(*commitsFileName)
+	events := helpers.LoadEventsScanner(*eventsFileName, commits)
+	repos := helpers.LoadLookup(*reposFileName)
 
 	output("user by commits", events.TopUserCommits.GetTopNAndClear(N), actors)
 	output("user by PRs", events.TopUserPR.GetTopNAndClear(N), actors)

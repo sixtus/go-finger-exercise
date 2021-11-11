@@ -7,7 +7,7 @@ import (
 func Test_Actor_Lookup(t *testing.T) {
 	actorsFileName := "../test-data/actors.csv"
 
-	a := LoadLookup(&actorsFileName)
+	a := LoadLookup(actorsFileName)
 
 	expectedLength := 9728 // this is specific to the test data
 

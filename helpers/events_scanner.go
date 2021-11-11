@@ -14,10 +14,10 @@ type EventsScanner struct {
 	TopRepoWatches *TopN
 }
 
-func LoadEventsScanner(filename *string, commits *CommitSizer) *EventsScanner {
+func LoadEventsScanner(filename string, commits *CommitSizer) *EventsScanner {
 	var e EventsScanner = EventsScanner{NewTopN(), NewTopN(), NewTopN(), NewTopN()}
 
-	f, err := os.Open(*filename)
+	f, err := os.Open(filename)
 	if err != nil {
 		log.Fatal(err)
 	}
