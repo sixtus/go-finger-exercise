@@ -13,7 +13,7 @@ const (
 func output(label string, topN internal.TopNEntries, lookup *internal.Lookup) {
 	fmt.Println(label)
 	for n, e := range topN {
-		fmt.Printf("%d: %s -> %d\n", n+1, lookup.GetNameById(e.Id), e.Counter)
+		fmt.Printf("%2d: %s -> %d\n", n+1, lookup.GetNameById(e.Id), e.Counter)
 	}
 	fmt.Println()
 }
