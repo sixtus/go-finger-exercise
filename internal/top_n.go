@@ -23,8 +23,8 @@ type topNIndex map[string]int
 // Since we expect the adding in random (and repeated) order and
 // access only once, the decision was taken against using "container/heap"
 // (which does sorting on insertion and is not really designed for updates)
-// Internally, TopN stories the entries in a slice, as this allows
-// to use the built-in sorting mechanism.
+// Internally, TopN stores the entries in a slice, as this allows
+// to use the built-in sorting mechanism of golang.
 // The other design decision based on this assumption is to add an index,
 // a map to improve the lookup in the entries (the map is not key->value,
 // but key->entries-offset and the value is entries[entries-offset])
@@ -59,19 +59,19 @@ func (t *TopN) Clear() {
 // in doubt, use 1.
 func (t *TopN) Add(id string, weight int) {
 	pos, idExists := t.index[id]
-	if !idExists {
+	if !idExists { // new id
 		entry := TopNEntry{
 			Id:      id,
 			Counter: weight,
 		}
-		t.index[id] = len(t.entries)
-		t.entries = append(t.entries, entry)
-	} else {
+		t.index[id] = len(t.entries)         // put the next slice position into the index
+		t.entries = append(t.entries, entry) // append the new entry to the slice
+	} else { // existing id
 		t.entries[pos].Counter = t.entries[pos].Counter + weight
 	}
 }
 
-// sorting the slice destroys the index
+// sorting the slice invalidates the index
 // so either clear or rebuild the index, only implemented the first
 func (t *TopN) GetTopNAndClear(n int) TopNEntries {
 	defer t.Clear()

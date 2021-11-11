@@ -33,6 +33,6 @@ func main() {
 
 	output("user by commits", events.TopUserCommits.GetTopNAndClear(N), actors)
 	output("user by PRs", events.TopUserPR.GetTopNAndClear(N), actors)
-	output("repo by commit", events.TopRepoCommits.GetTopNAndClear(N), repos)
+	output("repo by commits", events.TopRepoCommits.GetTopNAndClear(N), repos)
 	output("repo by watches", events.TopRepoWatches.GetTopNAndClear(N), repos)
 }
