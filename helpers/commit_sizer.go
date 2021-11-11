@@ -41,11 +41,11 @@ func LoadCommitSizer(filename *string) *CommitSizer {
 	return &l
 }
 
-func (l CommitSizer) Length() int {
+func (l *CommitSizer) Length() int {
 	return len(l.entries)
 }
 
-func (l CommitSizer) GetCommitSize(event_id string) int {
+func (l *CommitSizer) GetCommitSize(event_id string) int {
 	commit_size, _ := l.entries[event_id]
 	return commit_size
 }

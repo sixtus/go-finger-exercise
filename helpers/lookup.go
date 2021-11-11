@@ -41,11 +41,11 @@ func LoadLookup(filename *string) *Lookup {
 	return &l
 }
 
-func (l Lookup) Length() int {
+func (l *Lookup) Length() int {
 	return len(l.entries)
 }
 
-func (l Lookup) GetNameById(id string) string {
+func (l *Lookup) GetNameById(id string) string {
 	name, _ := l.entries[id]
 	return name
 }
